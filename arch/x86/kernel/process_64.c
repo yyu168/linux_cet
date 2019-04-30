@@ -884,6 +884,12 @@ int arch_setup_elf_property(struct arch_elf_state *state)
 
 	if (state->gnu_property & GNU_PROPERTY_X86_FEATURE_1_SHSTK)
 		r = shstk_setup();
+
+	if (r < 0)
+		return r;
+
+	if (state->gnu_property & GNU_PROPERTY_X86_FEATURE_1_IBT)
+		r = ibt_setup();
 #endif
 
 	return r;
